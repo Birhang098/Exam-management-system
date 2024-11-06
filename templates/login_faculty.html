@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Faculty Login - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="container login-container">
+    <section>
+        <h2>Faculty Login</h2>
+        <form action="{{ url_for('login_faculty') }}" method="POST">
+            <div class="input-with-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+                <input type="text" id="username" name="username" required>
+            </div><br><br>
+            
+            <div class="input-with-logo2">
+                <img src="{{ url_for('static', filename='images/lock.png') }}" alt="Lock" class="lock-icon">
+                <input type="password" id="password" name="password" required>
+            </div><br><br>
+            
+            <input type="submit" value="Login">
+        </form>
+    </section>
+</div>
+
+<style>
+    .input-with-logo {
+        display: flex;
+        align-items: center; /* Center items vertically */
+    }
+    .input-with-logo2 {
+        display: flex;
+        align-items: center; /* Center items vertically */
+    }
+    
+    .logo {
+        width: 43px; /* Adjust the width of the logo/lock icon as needed */
+        height: auto;
+        margin-right: 25px; /* Adjust the margin between the icon and the input */
+    }
+    .lock-icon {
+        width: 30px; /* Adjust the width of the logo/lock icon as needed */
+        height: auto;
+        margin-right: 43px; /* Adjust the margin between the icon and the input */
+    }
+    </style>
+    
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Faculty and Student Details{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="main-content">
+        <h2>Faculty and Student Details</h2>
+
+        <!-- Teacher Search Form -->
+        <h3>All Teacher Details:</h3>
+        <form action="{{ url_for('faculty_student_details') }}" method="POST">
+            <label for="search_teacher_invigilator">Search Teacher by Invigilator Teacher:</label>
+            <input type="text" name="search_teacher_invigilator" id="search_teacher_invigilator" required>
+            <input type="submit" value="Search">
+        </form>
+        <br>
+
+        <!-- Display All Teacher Details -->
+        <div class="table-wrapper">
+            <table class="records-table">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Invigilator Teacher</th>
+                        <th>Branch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if all_teachers %}
+                        {% for teacher in all_teachers %}
+                        <tr>
+                            <td>{{ teacher.employee_id }}</td>
+                            <td>{{ teacher.invigilator_teacher }}</td>
+                            <td>{{ teacher.branch }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="3">No teacher details available</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <!-- Student Search Form -->
+        <h3>All Student Details:</h3>
+        <form action="{{ url_for('faculty_student_details') }}" method="POST">
+            <label for="search_student_roll">Search Student by Roll Number:</label>
+            <input type="text" name="search_student_roll" id="search_student_roll" required>
+            <input type="submit" value="Search">
+        </form>
+        <br>
+
+        <!-- Display All Student Details -->
+        <div class="table-wrapper">
+            <table class="records-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Roll Number</th>
+                        <th>Branch</th>
+                        <th>Semester</th>
+                        <th>Batch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if all_students %}
+                        {% for student in all_students %}
+                        <tr>
+                            <td>{{ student.id }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.roll_number }}</td>
+                            <td>{{ student.branch }}</td>
+                            <td>{{ student.semester }}</td>
+                            <td>{{ student.batch }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6">No student details available</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <div>
+            <a href="{{ url_for('add_student_details') }}"><button>Add Student Details</button></a>
+            <a href="{{ url_for('add_teacher_details') }}"><button>Add Teacher Details</button></a>
+        </div>
+    </section>
+</div>
+{% endblock %}

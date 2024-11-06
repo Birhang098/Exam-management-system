@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Menu - {{ super() }}{% endblock %}
+
+{% block content %}
+<section class="main-content">
+    <h2>Exam Management Interface</h2>
+    <ul class="menu-list">
+        <li><a href="{{ url_for('add_exam') }}" class="fancy-button">Create New Exam</a></li>
+        <br>
+        <br>
+        <li><a href="{{ url_for('exam_records') }}" class="fancy-button">Check Exam Records</a></li> <!-- Added link to exam_records.html -->
+        <!-- Add more menu items as needed -->
+    </ul>
+</section>
+{% endblock %}

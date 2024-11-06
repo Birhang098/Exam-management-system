@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Create Exam - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="main-content">
+        <h2>Create New Exam</h2>
+        <form action="{{ url_for('add_exam') }}" method="POST" class="exam-form">
+            <label for="exam_date">Exam Date:</label>
+            <input type="date" id="exam_date" name="exam_date" required><br><br>
+            
+            <label for="exam_time">Exam Time:</label>
+            <input type="text" id="exam_time" name="exam_time" required><br><br> <!-- Added exam_time field -->
+            
+            <label for="room_number">Room Number:</label>
+            <input type="text" id="room_number" name="room_number" required><br><br>
+            
+            <label for="roll_number">Roll Number: (e.g., 202102023126 to 202102023130)</label>
+            <input type="text" id="roll_number" name="roll_number" pattern="\d{12}\s+to\s+\d{12}" title="Enter a valid roll number range in the format 'roll number to roll number' (e.g., 202102023126 to 202102023130)" required><br><br>
+            
+
+            <label for="invigilator_teacher" style="font-size: 16px; margin-bottom: 3px;">Invigilator Teacher:</label>
+            <select id="invigilator_teacher" name="invigilator_teacher" style="padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; width: 51%; font-size: 16px;">
+                <option value="psb">psb (cse department)</option>
+                <option value="rnm">rnm (cse department)</option>
+                <option value="AN">AN (cse department)</option>
+                <!-- Add other options for invigilator teachers here -->
+            </select><br><br>
+            
+            
+            
+            <label for="subject_code">Subject Code:</label>
+            <input type="text" id="subject_code" name="subject_code" required><br><br> <!-- Added subject_code field -->
+            
+            <label for="branch">Branch:</label>
+            <input type="text" id="branch" name="branch" required><br><br>
+            
+            <label for="semester">Semester:</label>
+            <input type="text" id="semester" name="semester" required><br><br>
+            
+            <label for="regular_student_count">No of Regular Students:</label>
+            <input type="number" id="regular_student_count" name="regular_student_count" required><br><br>
+            
+            <label for="back_student_count">No of Back Students:</label>
+            <input type="number" id="back_student_count" name="back_student_count" required><br><br>
+            
+            <input type="submit" value="Create Exam">
+        </form>
+    </section>
+</div>
+<div class="container">
+    <section class="main-content">
+        <button class="fancy-button" onclick="window.location.href='{{ url_for('exam_records') }}'">Go to Exam Records</button>
+    </section>
+</div>
+{% endblock %}
+

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Exam Records - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="main-content">
+        <h2>Exam Records</h2>
+        
+        <form class="search-form" action="{{ url_for('exam_records') }}" method="POST">
+            <label for="search_criteria">Search by:</label>
+            <select id="search_criteria" name="search_criteria" class="styled-select">
+                <option value="invigilator_teacher">Invigilator Teacher</option>
+               <!-- <option value="exam_date">Exam Date</option>-->
+                <option value="branch">Branch</option>
+                <option value="semester">Semester</option>
+            </select>
+            <input type="text" id="search_value" name="search_value" required class="styled-input">
+            <button type="submit" class="styled-button">Search</button>
+        </form>
+        
+        <div class="table-wrapper">
+            <table class="records-table">
+                <thead>
+                    <tr>
+                        <th>Exam Date</th>
+                        <th>Exam Time</th>
+                        <th>Room Number</th>
+                        <th>Roll Number</th>
+                        <th>Invigilator Teacher</th>
+                        <th>Subject Code</th>
+                        <th>Branch</th>
+                        <th>Semester</th>
+                        <th>Regular Student Count</th>
+                        <th>Back Student Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if search_results %}
+                        {% for exam in search_results %}
+                            <tr>
+                                <td>{{ exam.exam_date }}</td>
+                                <td>{{ exam.exam_time }}</td>
+                                <td>{{ exam.room_number }}</td>
+                                <td>{{ exam.roll_number }}</td>
+                                <td>{{ exam.invigilator_teacher }}</td>
+                                <td>{{ exam.subject_code }}</td>
+                                <td>{{ exam.branch }}</td>
+                                <td>{{ exam.semester }}</td>
+                                <td>{{ exam.regular_student_count }}</td>
+                                <td>{{ exam.back_student_count }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        {% for exam in exams %}
+                            <tr>
+                                <td>{{ exam.exam_date }}</td>
+                                <td>{{ exam.exam_time }}</td>
+                                <td>{{ exam.room_number }}</td>
+                                <td>{{ exam.roll_number }}</td>
+                                <td>{{ exam.invigilator_teacher }}</td>
+                                <td>{{ exam.subject_code }}</td>
+                                <td>{{ exam.branch }}</td>
+                                <td>{{ exam.semester }}</td>
+                                <td>{{ exam.regular_student_count }}</td>
+                                <td>{{ exam.back_student_count }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- Link to check student and faculty details -->
+        <a href="{{ url_for('faculty_student_details') }}">Check Student and Faculty Details</a>
+    </section>
+</div>
+
+<style>
+
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Add some space below the search form */
+}
+
+.styled-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+}
+
+.styled-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.styled-button {
+    padding: 8px 15px;
+    background-color: #ffff00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.styled-button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+{% endblock %}

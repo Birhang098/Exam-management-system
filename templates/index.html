@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Home - {{ super() }}{% endblock %}
+
+{% block content %}
+<header style="background-color: rgba(0, 123, 255, 0.7); color: #fff; padding: 20px;">
+    <div class="container">
+        <h1>Welcome to the Exam Management System!</h1>
+    </div>
+</header>
+
+
+<main class="container main-content">
+    <section>
+        <h2>Login</h2>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('login_faculty') }}" class="fancy-button" style="background-color: #007bff; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer;">Faculty Login</a></li>
+                <li><a href="{{ url_for('login_student') }}" class="fancy-button" style="background-color: #007bff; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer;">Student Login</a></li>
+            </ul>
+        </nav>
+    </section>
+</main>
+
+<main class="container main-content">
+    <section>
+        <h2>Registration</h2>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('register_faculty') }}" class="fancy-button" style="background-color: #007bff; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer;">Register Faculty</a></li>
+                <li><a href="{{ url_for('register_student') }}" class="fancy-button" style="background-color: #007bff; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer;">Register Student</a></li>
+            </ul>
+        </nav>
+    </section>
+</main>
+{% endblock %}

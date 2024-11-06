@@ -1,0 +1,44 @@
+<!-- login.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Login - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="container login-container">
+    <section>
+        <h2>Student Login</h2>
+        <form action="{{ url_for('login_student') }}" method="POST">
+            <div class="input-with-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+                <input type="text" id="username" name="username" required>
+            </div><br><br>
+            
+            <div class="input-with-logo">
+                <img src="{{ url_for('static', filename='images/lock.png') }}" alt="Lock" class="lock-icon">
+                <input type="password" id="password" name="password" required>
+            </div><br><br>
+            
+            <input type="submit" value="Login">
+        </form>
+    </section>
+</div>
+
+<style>
+    .input-with-logo {
+        display: flex;
+        align-items: center; /* Center items vertically */
+    }
+    
+    .logo {
+        width: 40px; /* Adjust the width of the logo/lock icon as needed */
+        height: auto;
+        margin-right: 25px; /* Adjust the margin between the icon and the input */
+    }
+    .lock-icon {
+        width: 25px; /* Adjust the width of the logo/lock icon as needed */
+        height: auto;
+        margin-right: 50px; /* Adjust the margin between the icon and the input */
+    }
+    </style>
+{% endblock %}
